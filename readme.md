@@ -88,5 +88,5 @@ No projeto foi construído o CRUD de usuários, autenticação de usuário, leit
 
 - Enviar o certificado via requisição manualmente pelo postman
 
-<img src="https://ibb.co/vBwKhSd">
+<img src="https://i.ibb.co/kyHWJtD/print.png">
 
