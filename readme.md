@@ -76,10 +76,17 @@ No projeto foi construído o CRUD de usuários, autenticação de usuário, leit
 - Certificado visível por usuários (TENANT).
 - Log da aplicação
 - Documentar api REST no Swagger ou Blueprint
+- Envio do certificado via form data no front end.
 
 ## Melhorias
 
 - Máscaras para os campos de entrada.
 - Responsividade.
 - Confirmar senha.
+
+## Observações
+
+- Enviar o certificado via requisição manualmente pelo postman
+
+<img src="https://ibb.co/vBwKhSd">
 

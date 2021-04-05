@@ -10,8 +10,14 @@ const actions = {
             })
     },
 
-    newCertificate({ commit }, params) {
-        axios.post(RESOURCE, params)
+    newCertificate({ commit }) {
+        let formData = new FormData();
+        axios.post(RESOURCE, formData,
+            {
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                }
+            })
             .then(response => {
                 commit('SET_CERTIFICATE', response.data.data)
             })

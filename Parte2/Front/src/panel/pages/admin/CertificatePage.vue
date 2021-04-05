@@ -1,7 +1,11 @@
 <template>
   <div>
     <FormDefault title="Novo Certificado" v-on:submit="submit()">
-      <TextFormDefault title="Certificado" v-model="formData.name" />
+      <TextFormDefault
+        title="Certificado"
+        type="file"
+        v-model="formData.certificate"
+      />
     </FormDefault>
     <div class="m-5">
       <!-- HEADER CONTENT -->
@@ -97,10 +101,7 @@ export default {
   data() {
     return {
       formData: {
-        id: "",
-        path: "",
-        DN: "",
-        DN_issuer: "",
+        certificate: "",
       },
     };
   },
