@@ -18,7 +18,7 @@ class CreateCertificatesTable extends Migration
             $table->string('path');
             $table->string('DN');
             $table->string('DN_issuer');
-            $table->datetime('expiration_at');
+            $table->string('expiration_at');
             $table->timestamps();
         });
     }

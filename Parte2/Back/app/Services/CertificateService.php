@@ -45,12 +45,14 @@ class CertificateService
         $resultDNIssuer .= 'OU=' . $issuerDN['rdnSequence'][2][0]['value']['printableString'] . ',';
         $resultDNIssuer .= 'OU=' . $issuerDN['rdnSequence'][3][0]['value']['printableString'] . ',';
         $resultDNIssuer .= 'CN=' . $issuerDN['rdnSequence'][4][0]['value']['printableString'];
+        $expirationDate = "Não antes de: " . Carbon::parse($x509->getCurrentCert()['tbsCertificate']['validity']['notBefore']['utcTime'])->format('M d H:i:s T');
+        $expirationDate .= " Não depois de: " . Carbon::parse($x509->getCurrentCert()['tbsCertificate']['validity']['notBefore']['utcTime'])->format('M d H:i:s T');
 
         return Certificate::create([
             'path'          => $pathStorage,
             'DN'            => $resultSubjectDn,
             'DN_issuer'     => $resultDNIssuer,
-            'expiration_at' => Carbon::now()
+            'expiration_at' => $expirationDate
         ]);
     }
 
