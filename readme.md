@@ -75,6 +75,7 @@ No projeto foi construído o CRUD de usuários, autenticação de usuário, leit
 - Retorno de falha na validação da requisição no Front.
 - Certificado visível por usuários (TENANT).
 - Log da aplicação
+- Documentar api REST no Swagger ou Blueprint
 
 ## Melhorias
 
