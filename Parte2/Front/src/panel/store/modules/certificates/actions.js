@@ -17,7 +17,7 @@ const actions = {
             })
     },
 
-    deleteUser({ commit }, id) {
+    deleteCertificate({ commit }, id) {
         axios.delete(`${RESOURCE}/${id}`)
             .then(() => {
                 commit('DELETE_CERTIFICATE', id)

@@ -34,7 +34,24 @@ class CertificateService
         $x509->loadX509($certificate);
         $subjectDN = $x509->getSubjectDN();
         $issuerDN = $x509->getIssuerDN();
-        dd($subjectDN, $issuerDN);
+        $resultSubjectDn = 'C=' . $subjectDN['rdnSequence'][0][0]['value']['printableString'] . ',';
+        $resultSubjectDn .= 'O=' . $subjectDN['rdnSequence'][1][0]['value']['printableString'] . ',';
+        $resultSubjectDn .= 'OU=' . $subjectDN['rdnSequence'][2][0]['value']['printableString'] . ',';
+        $resultSubjectDn .= 'OU=' . $subjectDN['rdnSequence'][3][0]['value']['printableString'] . ',';
+        $resultSubjectDn .= 'OU=' . $subjectDN['rdnSequence'][4][0]['value']['printableString'] . ',';
+        $resultSubjectDn .= 'CN=' . $subjectDN['rdnSequence'][5][0]['value']['printableString'];
+        $resultDNIssuer = 'C=' . $issuerDN['rdnSequence'][0][0]['value']['printableString'] . ',';
+        $resultDNIssuer .= 'O=' . $issuerDN['rdnSequence'][1][0]['value']['printableString'] . ',';
+        $resultDNIssuer .= 'OU=' . $issuerDN['rdnSequence'][2][0]['value']['printableString'] . ',';
+        $resultDNIssuer .= 'OU=' . $issuerDN['rdnSequence'][3][0]['value']['printableString'] . ',';
+        $resultDNIssuer .= 'CN=' . $issuerDN['rdnSequence'][4][0]['value']['printableString'];
+
+        return Certificate::create([
+            'path'          => $pathStorage,
+            'DN'            => $resultSubjectDn,
+            'DN_issuer'     => $resultDNIssuer,
+            'expiration_at' => Carbon::now()
+        ]);
     }
 
     public function deleteCertificateById(int $id): void

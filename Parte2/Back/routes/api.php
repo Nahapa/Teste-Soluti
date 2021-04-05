@@ -23,7 +23,7 @@ Route::post('register', [AuthControllerApi::class, 'register']);
 Route::apiResource('users', UserControllerApi::class);
 Route::get('certificates', [CertificateControllerApi::class, 'index']);
 Route::post('certificates', [CertificateControllerApi::class, 'store']);
-Route::delete('certificates', [CertificateControllerApi::class, 'destroy']);
+Route::delete('certificates/{id}', [CertificateControllerApi::class, 'destroy']);
 
 
 Route::group([

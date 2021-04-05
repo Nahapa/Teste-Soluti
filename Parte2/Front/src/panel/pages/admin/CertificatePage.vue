@@ -1,7 +1,7 @@
 <template>
   <div>
     <FormDefault title="Novo Certificado" v-on:submit="submit()">
-      <TextFormDefault title="Nome" v-model="formData.name" />
+      <TextFormDefault title="Certificado" v-model="formData.name" />
     </FormDefault>
     <div class="m-5">
       <!-- HEADER CONTENT -->
@@ -29,17 +29,22 @@
                   <th
                     class="py-3 px-4 text-left uppercase font-semibold text-sm"
                   >
-                    Nome
+                    Path
                   </th>
                   <th
                     class="py-3 px-4 text-left uppercase font-semibold text-sm"
                   >
-                    Email
+                    Data de Validade
                   </th>
                   <th
                     class="py-3 px-4 text-left uppercase font-semibold text-sm"
                   >
-                    Telefone
+                    DN
+                  </th>
+                  <th
+                    class="py-3 px-4 text-left uppercase font-semibold text-sm"
+                  >
+                    DN Issuer
                   </th>
                   <th
                     class="py-3 px-4 text-center uppercase font-semibold text-sm"
@@ -54,19 +59,17 @@
                   v-bind:key="certificate.id"
                   class="odd:bg-white even:bg-theme-striped"
                 >
-                  <td class="py-3 px-4 text-left">{{ certificate.name }}</td>
-                  <td class="py-3 px-4 text-left">{{ certificate.email }}</td>
-                  <td class="py-3 px-4 text-left">{{ certificate.phone }}</td>
+                  <td class="py-3 px-4 text-left">{{ certificate.path }}</td>
+                  <td class="py-3 px-4 text-left">
+                    {{ certificate.expiration_at }}
+                  </td>
+                  <td class="py-3 px-4 text-left">{{ certificate.DN }}</td>
+                  <td class="py-3 px-4 text-left">
+                    {{ certificate.DN_issuer }}
+                  </td>
                   <td
                     class="flex justify-around py-3 px-4 text-left text-theme-secondary"
                   >
-                    <i
-                      v-on:click="
-                        editCertificate(certificate.id);
-                        setFormShow();
-                      "
-                      class="cursor-pointer fa fa-edit"
-                    ></i>
                     <i
                       v-on:click="deleteCertificate(certificate.id)"
                       class="cursor-pointer fa fa-trash"
@@ -95,32 +98,21 @@ export default {
     return {
       formData: {
         id: "",
-        name: "",
-        cpf: "",
-        email: "",
-        phone: "",
-        password: "",
+        path: "",
+        DN: "",
+        DN_issuer: "",
       },
     };
   },
 
   computed: {
-    ...mapGetters(["getCertificatesAll", "getCertificateById"]),
+    ...mapGetters(["getCertificatesAll"]),
   },
 
   methods: {
-    ...mapActions([
-      "setFormShow",
-      "newCertificate",
-      "updateCertificate",
-      "deleteCertificate",
-    ]),
-    editCertificate(id) {
-      this.formData = this.getCertificateById(id);
-    },
+    ...mapActions(["setFormShow", "newCertificate", "deleteCertificate"]),
     submit() {
-      if (!this.formData.id) this.newCertificate(this.formData);
-      else this.updateCertificate(this.formData);
+      this.newCertificate(this.formData);
     },
   },
 

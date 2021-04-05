@@ -8,4 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class Certificate extends Model
 {
     use HasFactory;
+
+    protected $fillable = ['path', 'DN', 'DN_issuer', 'expiration_at'];
 }
